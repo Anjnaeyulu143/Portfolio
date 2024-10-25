@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { useRef } from "react";
+import Body from "./Components/Body";
+import Navbar from "./Components/Navbar";
+import { Footer } from "./Components/Footer";
 
-function App() {
+export default function App() {
+  const myProjectSection = useRef(null);
+  const scrollToProjects = () => {
+    myProjectSection.current?.scrollIntoView({ behavior: "smooth" });
+  };
+  const aboutSection = useRef(null);
+  const scrollToAboutSection = () => {
+    aboutSection.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Navbar
+        scrollToProjects={scrollToProjects}
+        scrollToAboutSection={scrollToAboutSection}
+      />
+      <Body
+        scrollToProjects={scrollToProjects}
+        myProjectSection={myProjectSection}
+        aboutSection={aboutSection}
+      />
+      <Footer />
+    </>
   );
 }
-
-export default App;
